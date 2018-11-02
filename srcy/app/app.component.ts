@@ -2,13 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Keyboard } from '@ionic-native/keyboard';
-import { Device } from '@ionic-native/device';
 
-//import { HomePage } from '../pages/home/home';
-//import { ListPage } from '../pages/list/list';
-import { SlidesPage } from '../pages/slides/slides';
-import { SurveysPage } from '../pages/surveys/surveys';
+import { HomePage } from '../pages/home/home';
+import { ListPage } from '../pages/list/list';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,18 +12,17 @@ import { SurveysPage } from '../pages/surveys/surveys';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = SurveysPage;
+  rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private keyboard: Keyboard, private device: Device) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Surveys', component: SurveysPage },
-      { title: 'Slides', component: SlidesPage }
-      
+      { title: 'Home', component: HomePage },
+      { title: 'List', component: ListPage }
     ];
 
   }
@@ -38,17 +33,6 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
-      console.log(this.device.platform);
-
-      if( this.device.platform == "iOS")
-        {
-         this.statusBar.overlaysWebView(true);
-         this.statusBar.hide();
-        }
-
-        this.keyboard.disableScroll(true);
-      
     });
   }
 

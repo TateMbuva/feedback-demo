@@ -1,0 +1,132 @@
+<!--
+  Generated template for the SlidesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-content>
+
+	<ion-slides pager>
+
+ 
+  <ion-slide *ngFor="let slide of qxns">
+
+  		<div *ngIf="slide.empty" >
+  			<ng-container>
+  			<h2 style="color: black">{{slide.title}}</h2>
+  			<p [innerHtml]="slide.qxn" style="color: grey"></p>
+     	 	
+      		<div padding>
+      			<ion-grid>
+      				<ion-row>
+      					<ion-col>
+	      			
+		      		</ion-col>
+		  			<ion-col  >
+	      			<button ion-button block mode="ios" style="background-color: #3db74a" (click)="nextQxn()">
+	      				<b>Surveys</b>
+	      			</button>
+		      		</ion-col>
+		      		<ion-col  >
+	      			
+		      		</ion-col>
+		      	</ion-row>
+      			</ion-grid>
+      		</div>
+			
+			
+  			</ng-container>
+  		</div>
+  		
+  		<div *ngIf="slide.start" >
+  			<ng-container>
+  			<h2 style="color: black">{{slide.title}}</h2>
+  			<p [innerHtml]="slide.qxn" style="color: grey"></p>
+     	 	<h2>🙂</h2>
+      		<div class="button-container">
+			<button ion-button full mode="ios" (click)="nextQxn()"><b>Start</b></button>
+			</div>
+  			</ng-container>
+  		</div>
+
+  		<div *ngIf="slide.end" >
+  			<ng-container>
+  			<h2 style="color: black">{{slide.title}}</h2>
+  			<p [innerHtml]="slide.qxn" style="color: grey"></p>
+     	 	<h2 menuToggle>🙂</h2>
+      		<div class="button-container">
+			<button ion-button full mode="ios" (click)="finishQxns()"><b>Finish</b></button>
+			</div>
+  			</ng-container>
+  		</div>
+
+  		<div *ngIf="slide.emoji" >
+  			<ng-container>
+  			<div class="fb-card" style="color: grey">
+    	
+    	<ion-grid class="qxn-grid">
+    		<ion-row [class.hideMe]="keyHide">
+		  	<ion-col class="title-col"  col-6>
+		  		{{slide.title}}
+		  	</ion-col>
+		  	<ion-col col-6>
+		  		
+		  	</ion-col>
+		  </ion-row>
+
+    		<ion-row>
+		  	<ion-col [innerHtml]="slide.qxn" class="qxn-col" col-12>
+		  		
+		  	</ion-col>
+		  </ion-row>
+		  <ion-row align-items-center class="emoji-row">
+		    <ion-col col-3 (click)="setEmotion('happy')">
+		    	<div class="emoji" [class.emoji-active]="activeEmoji == 'happy'">😀</div>
+		    </ion-col>
+		    <ion-col col-3 (click)="setEmotion('satisfied')">
+		    	<div class="emoji" [class.emoji-active]="activeEmoji == 'satisfied'">🙂</div>
+		    </ion-col>
+		    <ion-col col-3 (click)="setEmotion('disappointed')">
+		    	<div class="emoji" [class.emoji-active]="activeEmoji == 'disappointed'">🙁</div>
+		    </ion-col>
+		    <ion-col col-3 (click)="setEmotion('very unhappy')">
+		    	<div class="emoji" [class.emoji-active]="activeEmoji == 'very unhappy' ">😡</div>
+		    </ion-col>
+		  </ion-row>
+
+		  <ion-row>
+		  	<ion-col class="response-col" col-12>
+		  		{{currentEmotion}}
+		  	</ion-col>
+		  </ion-row>
+
+		  <ion-row>
+		  	<ion-col class="txt-col" col-12>
+		  		<ion-textarea rows="6" class="text-area" placeholder="Tell us more..."></ion-textarea>
+		  		
+		  	</ion-col>
+		  </ion-row>
+
+		  
+		  
+		</ion-grid>
+		
+		<div class="button-container">
+			<button ion-button full mode="ios" (click)="nextQxn()"><b>Continue</b></button>
+		</div>
+		
+
+    </div>
+  			</ng-container>
+  		</div>
+      
+    </ion-slide>
+
+  
+
+</ion-slides>
+
+</ion-content>
